@@ -13,19 +13,21 @@
 	<div class="login-page">
 		<div class="form">
 			<!-- Start Register Form -->
-			<form class="register-form">
-				<input type="text" placeholder="نام شما"/>
-				<input type="text" placeholder="پست الکترونیک"/>
-				<input type="password" placeholder="رمز عبور"/>
+			<form class="register-form" method="POST" action="{% url 'account:register' %}">
+                {% csrf_token %}
+				<input type="text" name="username" placeholder="نام شما"/>
+				<input type="text" name="email" placeholder="پست الکترونیک"/>
+				<input type="password" name="password" placeholder="رمز عبور"/>
 				<button>تکمیل عضویت</button>
 				<p class="message">عضو سایت هستید؟ <a href="#">وارد شوید</a></p>
 			</form>
 			<!-- End Register Form -->
 
 			<!-- Start Login Form -->
-			<form class="login-form">
-				<input type="text" placeholder="پست الکترونیک"/>
-				<input type="password" placeholder="رمز عبور"/>
+			<form class="login-form" method="POST" action="{% url 'account:login' %}">
+				{% csrf_token %}
+                <input type="text" name="username" placeholder="نام کاربری"/>
+				<input type="password" name="password" placeholder="رمز عبور"/>
 				<button>ورود به ناحیه کاربری</button>
 				<p class="message">عضو نیستید؟ <a href="#">عضو شوید</a></p>
 			</form>

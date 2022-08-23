@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Product_list</title>
+    <style>
+        .tabel_mahsolat{
+            collapse: collapse;
+            background-color: yellow;
+        }
+        .labelHa{
+            background-color: tomato;
+        }
+        .labelHa td{
+            width: 200px;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+<table class="tabel_mahsolat">
+    <tr class="labelHa">
+        <td>id</td>
+        <td>name</td>
+        <td>price</td>
+        <td>Count</td>
+        <td>description</td>
+        <td>category</td>
+        <td>subcategory</td>
+    </tr>
+    {% for i in Pros %}
+        <tr class="labelHa">
+            <td>{{ i.id }}</td>
+            <td>{{ i.name }}</td>
+            <td>{{ i.price }}</td>
+            <td>{{ i.count }}</td>
+            <td>{{ i.description }}</td>
+            <td>{{ i.category.parent }}</td>
+            <td>{{ i.category.name }}</td>
+        </tr>
+    {% endfor %}
+</table>
+
+</body>
+</html>

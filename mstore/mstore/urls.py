@@ -23,4 +23,6 @@ urlpatterns = [
     path('', views.home),
     path('admin/', admin.site.urls),
     path('account/', include('account.urls', namespace="account")),
-] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
+    path('products/', include('products.urls', namespace="products")),
+] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)\
+        + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

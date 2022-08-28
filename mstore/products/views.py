@@ -9,8 +9,6 @@ def Product_list(req):
 
 
 def delete(req, x):
-    # todo:
-    # 2 → image bakhsh edit ham hamintor dorostesh kon
     try:
         mahsol = Product.objects.get(id=x)
         # mahsol.delete()

@@ -18,35 +18,8 @@
         }
     </style>
 </head>
-{#class="tabel_mahsolat"#}
-<body>
-{#<table class="table table-striped">#}
-{#    <tr class="labelHa">#}
-{#        <td>id</td>#}
-{#        <td>name</td>#}
-{#        <td>price</td>#}
-{#        <td>Count</td>#}
-{#        <td>description</td>#}
-{#        <td>category</td>#}
-{#        <td>subcategory</td>#}
-{#        <td>image</td>#}
-{#        <td>tools</td>#}
-{#    </tr>#}
-{#    {% for i in Pros %}#}
-{#        <tr class="labelHa">#}
-{#            <td>{{ i.id }}</td>#}
-{#            <td>{{ i.name }}</td>#}
-{#            <td>{{ i.price }}</td>#}
-{#            <td>{{ i.count }}</td>#}
-{#            <td>{{ i.description }}</td>#}
-{#            <td>{{ i.category.parent }}</td>#}
-{#            <td>{{ i.category.name }}</td>#}
-{#            <td><img class = akse_man src="{% get_media_prefix %}{{ i.image }}" alt="False"> </td>#}
-{#            <td><a class="btn btn-light">Delete</a> | <a>Edit</a></td>#}
-{#        </tr>#}
-{#    {% endfor %}#}
-{#</table>#}
 
+<body>
 <table class="table table-bordered" >
   <thead>
     <tr>
@@ -59,11 +32,8 @@
         <th scope="col">description</th>
         <th scope="col">category</th>
         <th scope="col">subcategory</th>
-        <th scope="col">is active</th>
         <th scope="col">image</th>
-        {% if perms.blog.view_post %}
         <th scope="col">tools</th>
-        {% endif %}
     </tr>
   </thead>
   <tbody>
@@ -76,16 +46,17 @@
         <td>{{ i.description }}</td>
         <td>{{ i.category.parent }}</td>
         <td>{{ i.category.name }}</td>
-        <td>{% if Pros.is_active%}موجود است
-                        {% else %}ناموجود
-                {% endif %}</td>
         <td><img class = akse_man src="{% get_media_prefix %}{{ i.image }}" alt="False"> </td>
-      {% if perms.blog.view_post %}
       <td>
+      {% if perms.blog.view_post %}
           <form  onsubmit="return confirm('Do you really want to delete this?')" action="{% url 'products:delete' i.id %}" method="post">
               {% csrf_token %}
-              <input type="submit" value="delete" name="delete" class="btn btn-danger"> | <a href="{% url "products:update" i.id %}" class="btn btn-info">Edit</a><br>
+              <button type="submit" name="delete" class="btn btn-danger">Delete</button> |
+              <a href="{% url "products:update" i.id %}" class="btn btn-info">Edit</a><br>
           </form>
+          <button onclick="alert('محصول به سبد خرید اضافه شد')" type="button" name="add" class="btn btn-success">
+              <a style="text-decoration: none; color:inherit" href="{% url 'cart:AddToCart' i.id %}">Add to cart</a>
+          </button>
       </td>
       {% endif %}
   {% endfor %}

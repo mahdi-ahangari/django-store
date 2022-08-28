@@ -12,7 +12,7 @@
     </style>
 </head>
 <body>
-    <form action="{% url 'products:update' Pros.id %}" method=POST>
+    <form enctype="multipart/form-data" action="{% url 'products:update' Pros.id %}" method=POST>
     {% csrf_token %}
       <div class="form-group">
         <label for="exampleFormControlFile1">نام جدید</label>
@@ -32,7 +32,7 @@
       </div>
       <div class="form-group">
         <label for="formFile" class="form-label">عکس جدید</label>
-        <input required=required name="image" class="form-control" type="file" id="formFile">
+        <input accept="image/*" required=required name="image" class="form-control" type="file" id="formFile">
       </div>
       <div class="form-group">
         <label for="selecting">دسته بندی جدید</label>
@@ -42,10 +42,6 @@
             {% endfor %}
         </select>
       </div>
-      <div>
-          <label class="form-check-label" for="defaultCheck1">آیا محصول فعال است</label>
-          <input name="is_active" class="form-check-input required=required" type="checkbox" value="required" id="defaultCheck1" checked>
-        </div>
       <button type="submit" class="btn btn-primary">ثبت تغیرات</button>
     </form>
 </body>
